@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import { Button, DialogActions, DialogContent, Divider } from "@material-ui/core";
@@ -16,11 +16,32 @@ export const SelectWalletDialog = ({ open, onClose }) => {
     onClose(true);
   };
   const classes = useStyles();
-  const { activate } = useWeb3React();
+  const { activate , error} = useWeb3React();
   const handleMetamaskClick = () =>{
     activate(injectedConnector);
     onClose(true);
   }
+
+  useEffect(() => {
+    if (error) {
+      switch (error.name) {
+        case "UnsupportedChainIdError":
+          alert(
+            "Selected network is not supported. Please switch your network to Binance Smart Chain Mainnet"
+          );
+          break;
+        case "NoEthereumProviderError":
+          alert(
+            "You do not have metamask installed. Please install metamask to connect to the application."
+          );
+          break;
+        default:
+          alert(error);
+          break;
+      }
+    }
+  }, [error]);
+ 
   return (
     <Dialog onClose={handleClose} open={open} TransitionComponent={Transition}>
       <DialogTitle>Connect to Wallet</DialogTitle>

@@ -6,7 +6,9 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import {useEagerConnect} from "./connectors/use-eager-connect";
 import { SwapPage } from './pages/Swap.page';
-
+import { ToastContainer, } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
   library.pollingInterval = 12000;
@@ -19,6 +21,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={darkTheme}>
       <Web3ReactProvider getLibrary={getLibrary}>
+        <ToastContainer />
       <Layout>
         <SwapPage />
       </Layout>

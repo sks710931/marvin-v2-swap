@@ -20,7 +20,7 @@ export const SwapTabs = () => {
       aria-label="disabled tabs example"
       centered
     >
-      <Tab label="Swap MARVIN Token" />
+      <Tab label="Buy MARVIN Token" />
     </Tabs>
     <TabPanel value={tab} index={0}>
         <V2Swap />

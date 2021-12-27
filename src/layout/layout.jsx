@@ -19,11 +19,13 @@ import { DrawerItems } from "./drawer-items";
 import { SelectWalletDialog } from "../components/dialogs/select-wallet-dialog";
 import { useWeb3React } from "@web3-react/core";
 import { getFormattedEther } from "../utils/utils";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { injectedConnector } from "../connectors/injected-connector";
 const drawerWidth = 240;
 export const Layout = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const {account, library} = useWeb3React();
+  const {account, library, deactivate} = useWeb3React();
   const [balance, setBalance] = useState();
 
   useEffect(() => {
@@ -78,7 +80,7 @@ export const Layout = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Elon's Marvin V2 Swap (BSC)
+            Elon's Marvin token sale(BSC)
           </Typography>
           <div className={classes.right}>
             <div>
@@ -89,8 +91,19 @@ export const Layout = ({ children }) => {
                 onClick={openWallet}
                 className={classes.connect}
               >
-                {balance ? `${getFormattedEther(balance)} BNB` : "Connect"}
+                {account && balance ? `${getFormattedEther(balance)} BNB` : "Connect"}
               </Button>
+              {
+                account ? <Button
+                startIcon={<ExitToAppIcon />}
+                variant="contained"
+                color="primary"
+                className={classes.connect}
+                onClick={() => deactivate()}
+              >
+                Logout
+              </Button> : ""
+              }
             </div>
           </div>
         </Toolbar>
@@ -187,6 +200,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   connect:{
-    width: 200
+    width: 200,
+    marginRight: 15
   }
 }));
