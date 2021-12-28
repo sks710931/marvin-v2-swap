@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles, Typography, TextField, Button } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 import { Contract } from "@ethersproject/contracts";
-import { saleContract, tokenContract } from "../../connectors/address";
+import { saleContract } from "../../connectors/address";
 import saleAbi from "../../abi/sale.json";
-import erc20Abi from "../../abi/erc20.json";
 import { commify, formatUnits, parseUnits } from "@ethersproject/units";
 import { toast } from "react-toastify";
 

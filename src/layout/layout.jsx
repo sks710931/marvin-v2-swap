@@ -20,7 +20,6 @@ import { SelectWalletDialog } from "../components/dialogs/select-wallet-dialog";
 import { useWeb3React } from "@web3-react/core";
 import { getFormattedEther } from "../utils/utils";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { injectedConnector } from "../connectors/injected-connector";
 const drawerWidth = 240;
 export const Layout = ({ children }) => {
   const classes = useStyles();
