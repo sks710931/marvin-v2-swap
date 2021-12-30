@@ -54,7 +54,7 @@ export const SwapPage = () => {
   }, [library, account]);
   return (
     <div>
-      <Typography variant="h3">Marvin Token Sale</Typography>
+      <Typography variant="h3">Elon's Marvin Liquidity Swap</Typography>
       <Typography variant="subtitle1">
         Buy Marvin token with 15% discount on PCS price.
       </Typography>

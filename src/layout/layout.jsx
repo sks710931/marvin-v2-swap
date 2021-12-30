@@ -79,7 +79,7 @@ export const Layout = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Elon's Marvin token sale(BSC)
+            
           </Typography>
           <div className={classes.right}>
             <div>
