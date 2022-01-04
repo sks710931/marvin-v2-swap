@@ -56,7 +56,7 @@ export const SwapPage = () => {
     <div>
       <Typography variant="h3">Elon's Marvin Liquidity Swap</Typography>
       <Typography variant="subtitle1">
-        Buy Marvin token with 15% discount on PCS price.
+        Buy Marvin token at a discounted price.
       </Typography>
       <div className={classes.banner}>
         <div>

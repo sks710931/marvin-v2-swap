@@ -1,2 +1,2 @@
-export const saleContract = "0x0535177bB95990E0A435a0f404CC2c1f9FFE7B6f";
-export const tokenContract="0x96c0ca1a8E9d5903D9d748533A737079308C70A6";
+export const saleContract = "0x5ecbdfe189f9d271190bb233cc8d15889c7e7d48";
+export const tokenContract="0x54017fda0ff8f380ccef600147a66d2e262d6b17";

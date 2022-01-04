@@ -43,9 +43,9 @@ export const V2Swap = () => {
       setValue("");
       setMarvinBal(0);
     } catch (err) {
-     if(err.error){
-      if (err.error.message) {
-        toast.error(err.error.message);
+     if(err.data){
+      if (err.data.message) {
+        toast.error(err.data.message);
       }
       
      }else if(err.message){
