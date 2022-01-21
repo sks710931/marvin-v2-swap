@@ -35,7 +35,7 @@ export const V2Swap = () => {
       let overRides = {
         value: parseUnits(value, "ether"),
       };
-
+console.log(parseUnits(value, "ether"));
       const signer = await library.getSigner();
       const contract = new Contract(saleContract, saleAbi.abi, signer);
       const txResult = await contract.buyMarvinToken(overRides);

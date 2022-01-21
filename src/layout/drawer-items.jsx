@@ -6,21 +6,30 @@ import { useWeb3React } from "@web3-react/core";
 import React from "react";
 import { shortenAddress } from "../utils/utils";
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { useNavigate } from "react-router";
+import PhotoIcon from '@material-ui/icons/Photo';
 export const DrawerItems = () => {
     const {account} = useWeb3React();
+    const navigate = useNavigate();
   return (
     <div>
-      <ListItem button>
+      <ListItem onClick={() => navigate("/")} button>
         <ListItemIcon>
           <PersonIcon />
         </ListItemIcon>
         <ListItemText primary={`${account? shortenAddress(account): "Connect Wallet"}`} />
       </ListItem>
-      <ListItem button>
+      <ListItem onClick={() => navigate("/swap")} button>
         <ListItemIcon  >
           <AttachMoneyIcon />
         </ListItemIcon>
         <ListItemText primary="Marvin Sale" />
+      </ListItem>
+      <ListItem onClick={() => navigate("/nft-mint")} button>
+        <ListItemIcon  >
+          <PhotoIcon />
+        </ListItemIcon>
+        <ListItemText primary="Mint Marvin NFT's" />
       </ListItem>
     </div>
   );

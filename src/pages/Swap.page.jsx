@@ -2,7 +2,7 @@ import { Button, Chip, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import logo from "./../assets/images/logo2.png";
 import LaunchIcon from "@material-ui/icons/Launch";
-import { SwapContainer } from "../components/staking/container";
+import { SwapContainer } from "../components/swap/container";
 import { useWeb3React } from "@web3-react/core";
 import { Contract } from "@ethersproject/contracts";
 import { saleContract, tokenContract } from "../connectors/address";

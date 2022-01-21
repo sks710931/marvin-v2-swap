@@ -8,6 +8,8 @@ import {useEagerConnect} from "./connectors/use-eager-connect";
 import { SwapPage } from './pages/Swap.page';
 import { ToastContainer, } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { Routes, Route } from 'react-router-dom';
+import { UserPage } from './pages/user.page';
   
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
@@ -23,7 +25,12 @@ function App() {
       <Web3ReactProvider getLibrary={getLibrary}>
         <ToastContainer />
       <Layout>
-        <SwapPage />
+        <Routes>
+          <Route path="/" element={<UserPage />}/>
+          <Route path="/swap" element={<SwapPage />}/>
+          <Route path="/nft-mint" element={<h1>Mint NFT</h1>}/>
+        </Routes>
+        
       </Layout>
       </Web3ReactProvider>
       </ThemeProvider>
