@@ -1,4 +1,5 @@
-import React,{useState, useEffect} from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import {
   makeStyles,
   CssBaseline,
@@ -18,15 +19,15 @@ import WalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import { DrawerItems } from "./drawer-items";
 import { SelectWalletDialog } from "../components/dialogs/select-wallet-dialog";
 import { useWeb3React } from "@web3-react/core";
-import { getFormattedEther } from "../utils/utils";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useLocation } from "react-router";
 const drawerWidth = 240;
 export const Layout = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const {account, library, deactivate} = useWeb3React();
+  const { account, library, deactivate } = useWeb3React();
   const [balance, setBalance] = useState();
-
+  const location = useLocation();
   useEffect(() => {
     async function getBalance() {
       if (account) {
@@ -41,16 +42,16 @@ export const Layout = ({ children }) => {
   const [walletSelectdDlgOpen, setWallectConnectDlgOpen] = useState(false);
 
   const handleWalletClose = (value) => {
-    if(value){
+    if (value) {
       setWallectConnectDlgOpen(false);
     }
-  }
+  };
 
   const openWallet = () => {
-    if(!account){
+    if (!account) {
       setWallectConnectDlgOpen(true);
     }
-  }
+  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -79,30 +80,36 @@ export const Layout = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            
+            {getHeaderName(location.pathname)}
           </Typography>
           <div className={classes.right}>
             <div>
-              <Button
-                startIcon={<WalletIcon />}
-                variant="contained"
-                color="primary"
-                onClick={openWallet}
-                className={classes.connect}
-              >
-                {account && balance ? `${getFormattedEther(balance)} BNB` : "Connect"}
-              </Button>
-              {
-                account ? <Button
-                startIcon={<ExitToAppIcon />}
-                variant="contained"
-                color="primary"
-                className={classes.connect}
-                onClick={() => deactivate()}
-              >
-                Logout
-              </Button> : ""
-              }
+              {account ? (
+                ""
+              ) : (
+                <Button
+                  startIcon={<WalletIcon />}
+                  variant="contained"
+                  color="primary"
+                  onClick={openWallet}
+                  className={classes.connect}
+                >
+                  Connect
+                </Button>
+              )}
+              {account ? (
+                <Button
+                  startIcon={<ExitToAppIcon />}
+                  variant="contained"
+                  color="primary"
+                  className={classes.connect}
+                  onClick={() => deactivate()}
+                >
+                  Logout
+                </Button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </Toolbar>
@@ -141,12 +148,27 @@ export const Layout = ({ children }) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
-        <SelectWalletDialog open={walletSelectdDlgOpen} onClose={handleWalletClose}/>
+        <SelectWalletDialog
+          open={walletSelectdDlgOpen}
+          onClose={handleWalletClose}
+        />
       </main>
     </div>
   );
 };
 
+const getHeaderName = (path) => {
+  switch (path) {
+    case "/":
+      return "Your Account";
+    case "/swap":
+      return "Liquidity Swap";
+    case "/nft-mint":
+      return "Mint Marvin V1 NFT";
+    default:
+      return "";
+  }
+};
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -192,14 +214,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    fontSize: 30,
+    fontSize: 24,
     color: theme.palette.common.white,
   },
   right: {
     position: "relative",
   },
-  connect:{
+  connect: {
     width: 200,
-    marginRight: 15
-  }
+    marginRight: 15,
+  },
 }));
