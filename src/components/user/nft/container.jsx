@@ -1,50 +1,44 @@
-import { Box, Grid } from '@material-ui/core';
-import React from 'react';
-
+import { Contract } from "@ethersproject/contracts";
+import { Box, Grid } from "@material-ui/core";
+import { useWeb3React } from "@web3-react/core";
+import React, { useEffect, useState } from "react";
+import { nftV1 as NFT } from "../../../connectors/address";
+import nftAbi from "../../../abi/v1NFT.json";
+import { formatUnits } from "@ethersproject/units";
+import { NFTCard } from "./nftCard";
 export const Container = () => {
-    return (
-        <div>
-            <Box width="100%" flexWrap="wrap" display="flex" flexDirection="row">
-                <Grid container>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12}  sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={3}>
-                        item 1
-                    </Grid>
-                </Grid>
-            </Box>
-        </div>
-    );
-}
+  const { account, library } = useWeb3React();
+  const [nfts, setNFTs] = useState();
 
+  useEffect(() => {
+    const getNfts = async () => {
+      const signer = await library.getSigner();
+      const contract = new Contract(NFT, nftAbi.abi, signer);
+      const nftsArray = await contract.walletOfOwner(account);
+      const processed = nftsArray.map((value) => {
+        return Number(formatUnits(value, 0));
+      });
+      setNFTs(processed);
+      console.log(processed);
+    };
+    if (account && library) {
+      getNfts();
+    }
+  }, [account, library]);
+  return (
+    <div>
+      <Box width="100%" flexWrap="wrap" display="flex" flexDirection="row">
+        <Grid container>
+          {nfts &&
+            nfts.map((value, index) => {
+             return (
+                <Grid key={`NFT_${account}_${index}`} item xs={12} sm={12} md={4} lg={3}>
+                <NFTCard tokenId={value} />
+              </Grid>
+             )
+            })}
+        </Grid>
+      </Box>
+    </div>
+  );
+};
