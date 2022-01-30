@@ -109,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     borderRadius: 10,
+    border: `1px solid ${theme.palette.grey[800]}`
   },
   image: {
     height: 400,

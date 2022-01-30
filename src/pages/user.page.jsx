@@ -20,7 +20,7 @@ export const UserPage = () => {
         <Fragment>
           <AppBar className={classes.tabBar} position="static">
             <Tabs value={selectedTab} onChange={onTabChange}>
-              <Tab label="Marvin NFT" />
+              <Tab label="Bossy Martian NFT" />
               <Tab label="Market" />
             </Tabs>
           </AppBar>

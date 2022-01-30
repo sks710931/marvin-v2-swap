@@ -37,9 +37,12 @@ export const Container = () => {
              )
             })}
             {
-             nfts && nfts.length === 0 ? (
+             nfts && nfts.length === 0 && (
                 <h3>You do now have any Bossy Martian NFT's.</h3>
-              ) : <h3>Retriving your NFT's</h3>
+              ) 
+            }
+            {
+              !nfts &&  <h3>Retriving your NFT's</h3>
             }
         </Grid>
       </Box>

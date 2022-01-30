@@ -29,7 +29,7 @@ export const DrawerItems = () => {
         <ListItemIcon  >
           <PhotoIcon />
         </ListItemIcon>
-        <ListItemText primary="Mint Marvin NFT's" />
+        <ListItemText primary="Mint Bossy Martian" />
       </ListItem>
     </div>
   );
