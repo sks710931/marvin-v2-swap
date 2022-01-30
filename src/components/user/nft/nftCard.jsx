@@ -8,7 +8,7 @@ import nftAbi from "../../../abi/v1NFT.json";
 import axios from "axios";
 import { Fragment } from "react";
 
-export const NFTCard = ({ tokenId }) => {
+export const NFTCard = ({ tokenId, onDetailsClick }) => {
   const classes = useStyles();
   const { account, library } = useWeb3React();
   const [tokenUri, setTokenUri] = useState();
@@ -16,6 +16,10 @@ export const NFTCard = ({ tokenId }) => {
   const [img, setImg] = useState();
   const [name, setName] = useState();
   const [imgLoaded, setImgLoaded] = useState(false);
+  
+  const handleDetailsClick = () => {
+    onDetailsClick({metadata, tokenId});
+  }
   //get tokenUri
   useEffect(() => {
     const getTokenUri = async () => {
@@ -86,6 +90,7 @@ export const NFTCard = ({ tokenId }) => {
                 fullWidth
                 variant="contained"
                 color="secondary"
+                onClick={handleDetailsClick}
               >
                 Details
               </Button>

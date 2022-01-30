@@ -6,10 +6,19 @@ import { nftV1 as NFT } from "../../../connectors/address";
 import nftAbi from "../../../abi/v1NFT.json";
 import { formatUnits } from "@ethersproject/units";
 import { NFTCard } from "./nftCard";
+import { NFTDetailsDlg } from "../../dialogs/nft-details";
 export const Container = () => {
   const { account, library } = useWeb3React();
   const [nfts, setNFTs] = useState();
-
+  const [isDetailsOpen, setDetailsOpen] = useState(false);
+  const [details, setDetails] = useState();
+  const onDetailsClose = () => {
+    setDetailsOpen(false);
+  }
+  const handleDetailsOpen = (metadata) => {
+    setDetailsOpen(true);
+    setDetails(metadata);
+  }
   useEffect(() => {
     const getNfts = async () => {
       const signer = await library.getSigner();
@@ -32,7 +41,7 @@ export const Container = () => {
             nfts.map((value, index) => {
              return (
                 <Grid key={`NFT_${account}_${index}`} item xs={12} sm={12} md={4} lg={3}>
-                <NFTCard tokenId={value} />
+                <NFTCard onDetailsClick={handleDetailsOpen} tokenId={value} />
               </Grid>
              )
             })}
@@ -46,6 +55,7 @@ export const Container = () => {
             }
         </Grid>
       </Box>
+      <NFTDetailsDlg details={details} open={isDetailsOpen} onClose={onDetailsClose} />
     </div>
   );
 };
