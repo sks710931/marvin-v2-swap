@@ -19,7 +19,6 @@ export const Container = () => {
         return Number(formatUnits(value, 0));
       });
       setNFTs(processed);
-      console.log(processed);
     };
     if (account && library) {
       getNfts();
@@ -37,6 +36,11 @@ export const Container = () => {
               </Grid>
              )
             })}
+            {
+             nfts && nfts.length === 0 ? (
+                <h3>You do now have any Bossy Martian NFT's.</h3>
+              ) : <h3>Retriving your NFT's</h3>
+            }
         </Grid>
       </Box>
     </div>

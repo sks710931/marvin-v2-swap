@@ -28,7 +28,7 @@ export const UserPage = () => {
             <Container/>
           </TabPanel>
           <TabPanel value={selectedTab} index={1}>
-            <h1>"Item Two"</h1>
+            <h1>Coming Soon</h1>
           </TabPanel>
         </Fragment>
       )}
