@@ -172,6 +172,7 @@ const getHeaderName = (path) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    height: "100%",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -209,6 +210,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
+    height: "100%",
     flexGrow: 1,
     padding: theme.spacing(3),
   },

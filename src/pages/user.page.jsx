@@ -2,42 +2,42 @@ import React, { useState } from "react";
 import { Account } from "../components/user/account";
 import { Tabs, Tab, AppBar, makeStyles } from "@material-ui/core";
 import { TabPanel } from "../components/shared/tab-panel";
+import { useWeb3React } from "@web3-react/core";
+import { Fragment } from "react";
+import { Container } from "../components/user/nft/container";
 export const UserPage = () => {
-    const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(0);
 
-    const onTabChange = (event, newValue) => {
-        setSelectedTab(newValue);
-    }
-    const classes = useStyles();
-
+  const onTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+  };
+  const classes = useStyles();
+  const { account } = useWeb3React();
   return (
     <div>
-        <Account />
-      <AppBar className={classes.tabBar} position="static" >
-        <Tabs
-        value={selectedTab}
-        onChange={onTabChange}>
-          <Tab label="All Tokens" />
-          <Tab label="Market" />
-          <Tab label="Marvin NFT's" />
-        </Tabs>
-        
-      </AppBar>
-      <TabPanel value={selectedTab} index={0}>
-            <h1>"All Tokens"</h1>
-        </TabPanel>
-        <TabPanel value={selectedTab} index={1}>
+      <Account />
+      {account && (
+        <Fragment>
+          <AppBar className={classes.tabBar} position="static">
+            <Tabs value={selectedTab} onChange={onTabChange}>
+              <Tab label="Marvin NFT" />
+              <Tab label="Market" />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={selectedTab} index={0}>
+            <Container/>
+          </TabPanel>
+          <TabPanel value={selectedTab} index={1}>
             <h1>"Item Two"</h1>
-        </TabPanel>
-        <TabPanel value={selectedTab} index={2}>
-            <h1>"Item Three"</h1>
-        </TabPanel>
+          </TabPanel>
+        </Fragment>
+      )}
     </div>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
-    tabBar:{
-        backgroundColor: "transparent",
-    }
+  tabBar: {
+    backgroundColor: "transparent",
+  },
 }));

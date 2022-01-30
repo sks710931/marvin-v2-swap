@@ -10,6 +10,7 @@ import { ToastContainer, } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from 'react-router-dom';
 import { UserPage } from './pages/user.page';
+import { MintNFTPage } from './pages/mint-nft.page';
   
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
@@ -28,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<UserPage />}/>
           <Route path="/swap" element={<SwapPage />}/>
-          <Route path="/nft-mint" element={<h1>Mint NFT</h1>}/>
+          <Route path="/nft-mint" element={<MintNFTPage />}/>
         </Routes>
         
       </Layout>
