@@ -24,12 +24,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 export const NFTDetailsDlg = ({ open, onClose, details }) => {
-  const { tokenId, metadata } = details;
-  const {account} = useWeb3React();
+  const { account } = useWeb3React();
   const handleClose = () => {
     onClose(true);
   };
   const classes = useStyles();
+  
   return (
     <Dialog
       fullScreen
@@ -37,13 +37,13 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
       open={open}
       TransitionComponent={Transition}
     >
-      {metadata && (
+      {details.metadata && (
         <Fragment>
           <DialogTitle>
             <IconButton onClick={handleClose}>
               <ArrowBackIcon />
             </IconButton>
-            {metadata.name}
+            {details.metadata.name}
           </DialogTitle>
           <Divider />
           <DialogContent>
@@ -52,15 +52,15 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
                 <Box style={{ padding: "16px" }}>
                   <img
                     className={classes.image}
-                    src={metadata.image}
-                    alt={metadata.name}
+                    src={details.metadata.image}
+                    alt={details.metadata.name}
                   />
                   <Paper variant="elevation" className={classes.descCont}>
                     <div>
                       <Typography variant="h5" color="primary">
                         Description
                       </Typography>
-                      <p className={classes.desc}>{metadata.description}</p>
+                      <p className={classes.desc}>{details.metadata.description}</p>
                       <Box display="flex" flexDirection="row">
                         <div>
                           <Button
@@ -95,18 +95,24 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Box style={{ padding: "16px" }}>
                   <Paper className={classes.descCont} variant="outlined">
-                    <Typography variant="h3">{metadata.name}</Typography>
-                    <Typography className={classes.tokenId} variant="h6">
-                      Token ID: {tokenId}
-                    </Typography>
+                    <Typography variant="h3">{details.metadata.name}</Typography>
+                    {details.metadata.tokenId && (
+                      <Typography className={classes.tokenId} variant="h6">
+                        Token ID: {details.metadata.tokenId}
+                      </Typography>
+                    )}
                     <div className={classes.traitCont}>
-                        {
-                            metadata.attributes && metadata.attributes.length > 0 && (
-                                metadata.attributes.map( attribute => {
-                                    return <Chip color="secondary" className={classes.chip} label={`${attribute.trait_type} : ${attribute.value}`}/>
-                                })
-                            )
-                        }
+                      {details.metadata.attributes &&
+                        details.metadata.attributes.length > 0 &&
+                        details.metadata.attributes.map((attribute) => {
+                          return (
+                            <Chip
+                              color="secondary"
+                              className={classes.chip}
+                              label={`${attribute.trait_type} : ${attribute.value}`}
+                            />
+                          );
+                        })}
                     </div>
                     <Typography className={classes.tokenId} variant="h6">
                       Owned By: {account}
@@ -156,8 +162,8 @@ const useStyles = makeStyles((theme) => ({
   traitCont: {
     marginTop: theme.spacing(2),
   },
-  chip:{
-      marginRight: theme.spacing(2),
-      marginBottom: theme.spacing(2)
-  }
+  chip: {
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
 }));
