@@ -20,6 +20,8 @@ import NotesIcon from "@material-ui/icons/Notes";
 import LanguageIcon from "@material-ui/icons/Language";
 import { nftV1 } from "../../connectors/address";
 import { useWeb3React } from "@web3-react/core";
+import winnerImg from "../../assets/images/winner.png";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -29,7 +31,7 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
     onClose(true);
   };
   const classes = useStyles();
-  
+
   return (
     <Dialog
       fullScreen
@@ -60,7 +62,9 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
                       <Typography variant="h5" color="primary">
                         Description
                       </Typography>
-                      <p className={classes.desc}>{details.metadata.description}</p>
+                      <p className={classes.desc}>
+                        {details.metadata.description}
+                      </p>
                       <Box display="flex" flexDirection="row">
                         <div>
                           <Button
@@ -95,10 +99,12 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Box style={{ padding: "16px" }}>
                   <Paper className={classes.descCont} variant="outlined">
-                    <Typography variant="h3">{details.metadata.name}</Typography>
-                    {details.metadata.tokenId && (
+                    <Typography variant="h3">
+                      {details.metadata.name}
+                    </Typography>
+                    {details.tokenId && (
                       <Typography className={classes.tokenId} variant="h6">
-                        Token ID: {details.metadata.tokenId}
+                        Token ID: {details.tokenId}
                       </Typography>
                     )}
                     <div className={classes.traitCont}>
@@ -117,6 +123,28 @@ export const NFTDetailsDlg = ({ open, onClose, details }) => {
                     <Typography className={classes.tokenId} variant="h6">
                       Owned By: {account}
                     </Typography>
+                    {details.isWinner && (
+                      <div className={classes.winner}>
+                        <img width="60px" src={winnerImg} alt="" />
+                        <div style={{width:"100%"}}>
+                          <Typography
+                            className={classes.winnerTitle}
+                            variant="h5"
+                          >
+                            Congratulations!
+                          </Typography>
+                          <Typography
+                            className={classes.winnerSub}
+                            variant="subtitle1"
+                          >
+                            You have won the 1 BNB lottery prize.
+                          </Typography>
+                        </div>
+                        <div className="redeem-box">
+                          <Button variant="contained">Redeem Now</Button>
+                        </div>
+                      </div>
+                    )}
                   </Paper>
                 </Box>
               </Grid>
@@ -141,6 +169,27 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  winner: {
+    marginTop: theme.spacing(2),
+    backgroundColor: "red",
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: theme.spacing(2),
+  },
+  winnerSub: {
+    color: "gold",
+    marginLeft: theme.spacing(2),
+    fontSize: 20,
+    fontWeight: 500,
+  },
+  winnerTitle: {
+    color: "gold",
+    marginLeft: theme.spacing(2),
+    fontWeight: 700,
   },
   descCont: {
     padding: theme.spacing(2),

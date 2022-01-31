@@ -6,3 +6,41 @@ input[type=number]::-webkit-outer-spin-button {
 .App{
   height: 100%;
 }
+
+.winner{
+  background-color: red;
+  position: absolute;
+  z-index: 200;
+  width: 100%;
+  padding: 5px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  span{
+    font-size: 22px;
+    font-weight: 700;
+    color: gold;
+    padding-left: 10px;
+  }
+}
+.redeem-box{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  button{
+    background-color: gold;
+    text-transform: capitalize;
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+    border-radius: 50px;
+    &:hover{
+      background-color: gold;
+    }
+  }
+  
+}

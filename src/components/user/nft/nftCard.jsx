@@ -7,6 +7,7 @@ import { nftV1 } from "../../../connectors/address";
 import nftAbi from "../../../abi/v1NFT.json";
 import axios from "axios";
 import { Fragment } from "react";
+import winnerImg from "../../../assets/images/winner.png";
 
 export const NFTCard = ({ tokenId, onDetailsClick }) => {
   const classes = useStyles();
@@ -16,10 +17,10 @@ export const NFTCard = ({ tokenId, onDetailsClick }) => {
   const [img, setImg] = useState();
   const [name, setName] = useState();
   const [imgLoaded, setImgLoaded] = useState(false);
-  
+  const [isWinner, setIsWinner] = useState(false);
   const handleDetailsClick = () => {
-    onDetailsClick({metadata, tokenId});
-  }
+    onDetailsClick({ metadata, tokenId, isWinner });
+  };
   //get tokenUri
   useEffect(() => {
     const getTokenUri = async () => {
@@ -27,6 +28,8 @@ export const NFTCard = ({ tokenId, onDetailsClick }) => {
       const contract = new Contract(nftV1, nftAbi.abi, signer);
       const uri = await contract.tokenURI(tokenId);
       const colName = await contract.name();
+      const isWin = await contract.isLotteryWinner(tokenId);
+      setIsWinner(isWin);
       setName(colName);
       setTokenUri(uri);
     };
@@ -63,22 +66,26 @@ export const NFTCard = ({ tokenId, onDetailsClick }) => {
   }, [metadata]);
   return (
     <div className={classes.root}>
-      <Paper className={classes.card} variant="elevation" elevation={10}>
+      <Paper className={`${classes.card}`} variant="elevation" elevation={10}>
+        {isWinner && (
+          <div className="winner">
+            <img width="40px" src={winnerImg} alt="winner" />
+            <span>Winner</span>
+          </div>
+        )}
         {metadata && (
           <Fragment>
             <img
               src={metadata.image}
-              className={`${classes.image} ${imgLoaded ? '' : classes.imgHide}`}
+              className={`${classes.image} ${imgLoaded ? "" : classes.imgHide}`}
               alt={metadata.name}
               onLoad={() => setImgLoaded(true)}
             />
-            {
-              !imgLoaded && (
-                <div className={classes.imgLoader}> 
-                  <CircularProgress color="primary" />
-                </div>
-              )
-            }
+            {!imgLoaded && (
+              <div className={classes.imgLoader}>
+                <CircularProgress color="primary" />
+              </div>
+            )}
             <div className={classes.name}>
               <span>{name}</span>
             </div>
@@ -105,16 +112,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1),
   },
-  imgLoader:{
+  imgLoader: {
     height: 400,
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   card: {
     borderRadius: 10,
-    border: `1px solid ${theme.palette.grey[800]}`
+    border: `1px solid ${theme.palette.grey[800]}`,
+    position: "relative",
+    overflow: "hidden",
   },
   image: {
     height: 400,
@@ -122,10 +131,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    
   },
-  imgHide:{
-    display: "none"
+  imgHide: {
+    display: "none",
   },
   name: {
     marginLeft: theme.spacing(2),

@@ -11,7 +11,7 @@ export const Container = () => {
   const { account, library } = useWeb3React();
   const [nfts, setNFTs] = useState();
   const [isDetailsOpen, setDetailsOpen] = useState(false);
-  const [details, setDetails] = useState({metadata: undefined, tokenId: undefined});
+  const [details, setDetails] = useState({metadata: undefined, tokenId: undefined, isWinner: false});
   const onDetailsClose = () => {
     setDetailsOpen(false);
   }
