@@ -17,6 +17,7 @@ export const NFTCard = ({ tokenId, onDetailsClick }) => {
   const [img, setImg] = useState();
   const [name, setName] = useState();
   const [imgLoaded, setImgLoaded] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [isWinner, setIsWinner] = useState(false);
   const handleDetailsClick = () => {
     onDetailsClick({ metadata, tokenId, isWinner });
@@ -28,8 +29,6 @@ export const NFTCard = ({ tokenId, onDetailsClick }) => {
       const contract = new Contract(nftV1, nftAbi.abi, signer);
       const uri = await contract.tokenURI(tokenId);
       const colName = await contract.name();
-      const isWin = await contract.isLotteryWinner(tokenId);
-      setIsWinner(isWin);
       setName(colName);
       setTokenUri(uri);
     };

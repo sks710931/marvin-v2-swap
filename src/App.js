@@ -11,6 +11,7 @@ import { ToastContainer, } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
 import { UserPage } from './pages/user.page';
 import { MintNFTPage } from './pages/mint-nft.page';
+import { WhitelistMintPage } from './pages/whitelist-mint';
   
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<UserPage />}/>
           <Route path="/swap" element={<SwapPage />}/>
           <Route path="/nft-mint" element={<MintNFTPage />}/>
+          <Route path="/whitelist-mint" element={<WhitelistMintPage />} />
         </Routes>
         
       </Layout>

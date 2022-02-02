@@ -164,7 +164,9 @@ const getHeaderName = (path) => {
     case "/swap":
       return "Liquidity Swap";
     case "/nft-mint":
-      return "Mint Marvin V1 NFT";
+      return "Mint Bossy Martian NFT";
+    case "/whitelist-mint":
+        return "Whitelist Mint Bossy Martian NFT";
     default:
       return "";
   }

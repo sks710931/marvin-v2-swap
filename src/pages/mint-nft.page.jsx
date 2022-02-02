@@ -15,8 +15,8 @@ export const MintNFTPage = () => {
         alignItems="center"
       >
         <Grid container>
-          <Grid item xs={12} sm={12} md={12} lg={3}></Grid>
-          <Grid item xs={12} sm={12} md={12} lg={6}>
+          <Grid item xs={12} sm={12} md={12} lg={2}></Grid>
+          <Grid item xs={12} sm={12} md={12} lg={8}>
             <Box
               display="flex"
               flexDirection="column"

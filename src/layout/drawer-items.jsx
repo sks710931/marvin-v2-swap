@@ -23,13 +23,19 @@ export const DrawerItems = () => {
         <ListItemIcon  >
           <AttachMoneyIcon />
         </ListItemIcon>
-        <ListItemText primary="Marvin Sale" />
+        <ListItemText primary="Liquidity Swap" />
       </ListItem>
       <ListItem onClick={() => navigate("/nft-mint")} button>
         <ListItemIcon  >
           <PhotoIcon />
         </ListItemIcon>
         <ListItemText primary="Mint Bossy Martian" />
+      </ListItem>
+      <ListItem onClick={() => navigate("/whitelist-mint")} button>
+        <ListItemIcon  >
+          <PhotoIcon />
+        </ListItemIcon>
+        <ListItemText primary="Whitelist Mint" />
       </ListItem>
     </div>
   );
