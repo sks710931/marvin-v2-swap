@@ -162,6 +162,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 25,
     fontWeight: 700,
     marginRight: theme.spacing(2),
+    [theme.breakpoints.down(900)]:{
+      fontSize: 14
+    }
   },
   utilityIcon: {
     width: 18,

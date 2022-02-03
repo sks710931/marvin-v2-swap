@@ -89,7 +89,7 @@ export const Minter = () => {
             Total Minted: <b className={classes.bold}>{minted}</b> / 2000
           </span>
           <Box display="flex" flexDirection="row">
-            <div>
+            <div className={classes.controlCont}>
               <div className={classes.controls}>
                 <div className={classes.controlItem}>
                   <IconButton onClick={handleAdd}>
@@ -112,7 +112,7 @@ export const Minter = () => {
               </div>
             </div>
 
-            <div style={{ width: "100%", paddingLeft: "48px" }}>
+            <div className={classes.mintCont}>
               <Button
                 className={classes.mintButton}
                 variant="contained"
@@ -166,37 +166,58 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
 
     borderRadius: 10,
-    padding: theme.spacing(6),
+    padding: theme.spacing(3),
     paddingTop: theme.spacing(3),
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
+    [theme.breakpoints.down(900)]:{
+      padding: theme.spacing(1),
+      paddingTop: theme.spacing(1),
+      margin: 2,
+    }
+  },
+  controlCont:{
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.down(900)]:{
+      width: 150,
+    }
   },
   controls: {
     height: 100,
     border: `4px solid ${theme.palette.secondary.main}`,
-    borderRadius: 10,
-    width: 250,
-
+    borderRadius: 8,
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down(900)]:{
+      width: 150,
+      height: 80
+    }
   },
   controlItem: {
     width: "100%",
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
+    
   },
   icon: {
     height: 40,
     width: 40,
+    [theme.breakpoints.down(900)]:{
+      height: 20,
+      width: 20
+    }
   },
   mintNumber: {
     fontSize: 28,
     fontWeight: 700,
+    [theme.breakpoints.down(900)]:{
+      fontSize:18
+    }
   },
   mintButton: {
     width: "100%",
@@ -204,16 +225,34 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 28,
     fontWeight: 700,
     height: 100,
+    [theme.breakpoints.down(900)]:{
+      width: 300,
+      height: 80,
+      fontSize: 18,
+    }
+  },
+  mintCont:{
+    [theme.breakpoints.down(900)]:{
+      width: 300,
+      height: 80,
+      fontSize: 18,
+    }
   },
   controlText: {
     fontSize: 20,
     textAlign: "center !important",
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down(900)]:{
+      fontSize:14
+    }
   },
   buttonText: {
     fontSize: 20,
     textAlign: "center !important",
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down(900)]:{
+      fontSize:14
+    }
   },
   bold: {
     color: theme.palette.secondary.light,
@@ -223,6 +262,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 24,
     fontWeight: 700,
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down(900)]:{
+      fontSize:16
+    }
   },
   connect: {
     marginTop: theme.spacing(3),
