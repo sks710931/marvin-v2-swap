@@ -112,7 +112,7 @@ export const Minter = () => {
               </div>
             </div>
 
-            <div className={classes.mintCont}>
+            <div className={classes.pad}>
               <Button
                 className={classes.mintButton}
                 variant="contained"
@@ -181,7 +181,7 @@ const useStyles = makeStyles((theme) => ({
   controlCont:{
     marginRight: theme.spacing(2),
     [theme.breakpoints.down(900)]:{
-      width: 150,
+      
     }
   },
   controls: {
@@ -193,7 +193,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     [theme.breakpoints.down(900)]:{
-      width: 150,
+      
       height: 80
     }
   },
@@ -280,4 +280,11 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     marginRight: theme.spacing(2),
   },
+  pad:{
+    width: "100%",
+    paddingLeft:theme.spacing(4),
+    [theme.breakpoints.down(900)]:{
+      paddingLeft:theme.spacing(1)
+    }
+  }
 }));

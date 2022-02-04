@@ -39,7 +39,7 @@ export const MintNFTPage = () => {
           <Grid item xs={12} sm={12} md={12} lg={2}></Grid>
           <Grid item xs={12} sm={12} md={12} lg={8}>
             <div className={classes.about}>
-              <Typography color="secondary" variant="h2">
+              <Typography color="secondary" className={classes.aboutH} variant="h2">
                 About the Project
               </Typography>
               <div className={classes.aboutText}>
@@ -70,28 +70,10 @@ export const MintNFTPage = () => {
           <Grid item xs={12} sm={12} md={12} lg={2}></Grid>
           <Grid item xs={12} sm={12} md={12} lg={8}>
             <div className={classes.featured}>
-              <Typography color="secondary" variant="h2">
-                Featured In
+              <Typography color="secondary" className={classes.aboutH} variant="h2">
+                Inspiration for Collection
               </Typography>
-              <div className={classes.newsCont}>
-                <div className={classes.newsItem}>
-                  <a
-                    href="https://money.yahoo.com/elons-marvin-token-uses-nfts-111500423.html"
-                    target="_blank"
-                  >
-                    <img src={yahoo} alt="Yahoo" />
-                  </a>
-                </div>
-                <div className={classes.newsItem}>
-                  <a
-                    target="_blank"
-                    href="https://www.marketwatch.com/press-release/nfts-building-a-better-world-elons-marvin-token-2022-01-29?mod=search_headline"
-                  >
-                    <img src={mw} alt="Marketwatch" />
-                  </a>
-                </div>
-              </div>
-              <div className={classes.newsCont}>
+              <div className={classes.tweetCont}>
                 <div className={classes.tweetItem}>
                   <a
                     href="https://twitter.com/elonmusk/status/1354202453252710402?t=XywQUfVEOoHyJTsYM6ED3Q&s=19"
@@ -106,6 +88,35 @@ export const MintNFTPage = () => {
                     target="_blank"
                   >
                     <img width="100%" src={tw2} alt="Marketwatch" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12} lg={3}></Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} lg={2}></Grid>
+          <Grid item xs={12} sm={12} md={12} lg={8}>
+            <div className={classes.featured}>
+              <Typography color="secondary" className={classes.aboutH} variant="h2">
+                Press Release
+              </Typography>
+              <div className={classes.newsCont}>
+                <div className={classes.newsItem}>
+                  <a
+                    href="https://money.yahoo.com/elons-marvin-token-uses-nfts-111500423.html"
+                    target="_blank"
+                  >
+                    <img className={classes.img} src={yahoo} alt="Yahoo" />
+                  </a>
+                </div>
+                <div className={classes.newsItem}>
+                  <a
+                    target="_blank"
+                    href="https://www.marketwatch.com/press-release/nfts-building-a-better-world-elons-marvin-token-2022-01-29?mod=search_headline"
+                  >
+                    <img className={classes.img} src={mw} alt="Marketwatch" />
                   </a>
                 </div>
               </div>
@@ -129,6 +140,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginTop: 10,
     [theme.breakpoints.down(900)]: {
+    },
+  },
+  tweetCont: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    [theme.breakpoints.down(900)]: {
       flexDirection: "column",
     },
   },
@@ -142,7 +162,23 @@ const useStyles = makeStyles((theme) => ({
     height: 300,
     backgroundColor: theme.palette.common.white,
     borderRadius: 25,
+    [theme.breakpoints.down(900)]:{
+      margin: theme.spacing(1),
+      marginBottom:theme.spacing(2),
+      width: 150,
+      height: 150,
+      borderRadius: 10
+    }
   },
+  img:{
+    [theme.breakpoints.down(900)]:{
+      borderRadius: 10,
+      width: 150,
+      height: 150,
+      
+    }
+  },
+
   tweetItem: {
     display: "flex",
     flexDirection: "row",
@@ -169,6 +205,11 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1),
       marginTop: theme.spacing(2),
     },
+  },
+  aboutH:{
+    [theme.breakpoints.down(900)]:{
+      fontSize: 36
+    }
   },
   aboutText: {
     fontSize: 24,

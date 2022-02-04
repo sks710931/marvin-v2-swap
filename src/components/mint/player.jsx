@@ -9,7 +9,8 @@ export const VideoPlayer = () => {
         loop
         playing={true}
         width="100%"
-        url="https://firebasestorage.googleapis.com/v0/b/marvin-liquidity-swap.appspot.com/o/marvin-Banner-video.mp4?alt=media&token=e7159d63-8607-45f4-9d68-965c554f95a1"
+        height="100%"
+        url="https://firebasestorage.googleapis.com/v0/b/elons-marvin.appspot.com/o/main.mp4?alt=media&token=abd1c586-f7ac-456a-871b-dc5ad03c89e7"
       />
     </div>
   );

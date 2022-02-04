@@ -83,6 +83,7 @@ import {
     }, [account, library]);
     return (
       <div className={classes.root}>
+        
         {account ? (
           <Fragment>
             <span className={classes.counter}>
@@ -112,7 +113,7 @@ import {
                 </div>
               </div>
   
-              <div style={{ width: "100%", paddingLeft: "48px" }}>
+              <div className={classes.pad} >
                 <Button
                   className={classes.mintButton}
                   variant="contained"
@@ -181,7 +182,7 @@ import {
     controlCont:{
       marginRight: theme.spacing(2),
       [theme.breakpoints.down(900)]:{
-        width: 150,
+        
       }
     },
     controls: {
@@ -193,7 +194,7 @@ import {
       justifyContent: "center",
       alignItems: "center",
       [theme.breakpoints.down(900)]:{
-        width: 150,
+        
         height: 80
       }
     },
@@ -280,5 +281,12 @@ import {
       height: 50,
       marginRight: theme.spacing(2),
     },
+    pad:{
+      width: "100%",
+      paddingLeft:theme.spacing(4),
+      [theme.breakpoints.down(900)]:{
+        paddingLeft:theme.spacing(2)
+      }
+    }
   }));
   
