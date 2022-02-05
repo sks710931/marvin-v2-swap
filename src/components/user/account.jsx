@@ -20,7 +20,9 @@ import erc20Abi from "../../abi/erc20.json";
 import { commify, formatUnits, parseUnits } from "@ethersproject/units";
 import { Fragment } from "react";
 import metamask from "../../assets/images/metamask-fox.svg";
+import wc from "../../assets/images/wc.png";
 import {injectedConnector} from "../../connectors/injected-connector";
+import {walletConnect} from "../../connectors/wallet-connect";
 import copy from "copy-to-clipboard";
 import { toast } from "react-toastify";
 
@@ -61,6 +63,9 @@ export const Account = () => {
   }, [library, account]);
   const handleMetamaskClick = () =>{
     activate(injectedConnector);
+  }
+  const handleWalletkClick = () =>{
+    activate(walletConnect);
   }
 
   useEffect(() => {
@@ -140,6 +145,9 @@ export const Account = () => {
            </Typography>
            <Button onClick={handleMetamaskClick} className={classes.metamaskBtn} variant="outlined">
                <img className={classes.metamaskLogo} src={metamask} alt="Metamask" /> Metamask
+           </Button>
+           <Button onClick={handleWalletkClick} className={classes.metamaskBtn} variant="outlined">
+               <img className={classes.metamaskLogo} src={wc} alt="Metamask" /> Wallet Connect
            </Button>
        </Box>
       )}

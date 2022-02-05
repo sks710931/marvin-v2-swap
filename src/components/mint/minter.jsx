@@ -11,6 +11,8 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import { Fragment } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { injectedConnector } from "../../connectors/injected-connector";
+import { walletConnect } from "../../connectors/wallet-connect";
+import wc from "../../assets/images/wc.png";
 import metamask from "../../assets/images/metamask-fox.svg";
 import nftAbi from "../../abi/v1NFT.json";
 import { nftV1 as NFT } from "../../connectors/address";
@@ -34,6 +36,9 @@ export const Minter = () => {
   };
   const handleMetamaskClick = () => {
     activate(injectedConnector);
+  };
+  const handleWalletClick = () => {
+    activate(walletConnect);
   };
   const price = 0.125;
   const classes = useStyles();
@@ -151,6 +156,18 @@ export const Minter = () => {
                 alt="Metamask"
               />{" "}
               Metamask
+            </Button>
+            <Button
+              onClick={handleWalletClick}
+              className={classes.metamaskBtn}
+              variant="outlined"
+            >
+              <img
+                className={classes.metamaskLogo}
+                src={wc}
+                alt="Metamask"
+              />{" "}
+              Wallet Connect
             </Button>
           </Box>
         </div>

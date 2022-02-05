@@ -1,12 +1,17 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
-import { Box, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Box, Grid, makeStyles, Typography, IconButton } from "@material-ui/core";
 import { VideoPlayer } from "../components/mint/player";
 import { Minter } from "../components/mint/minter";
 import yahoo from "../assets/images/yahoo.png";
 import mw from "../assets/images/marketwatch.jpg";
 import tw1 from "../assets/images/tweet1.PNG";
 import tw2 from "../assets/images/tweet2.png";
+
+import TelegramIcon from "@material-ui/icons/Telegram";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import RedditIcon from "@material-ui/icons/Reddit";
 export const MintNFTPage = () => {
   const classes = useStyles();
   return (
@@ -71,8 +76,9 @@ export const MintNFTPage = () => {
           <Grid item xs={12} sm={12} md={12} lg={8}>
             <div className={classes.featured}>
               <Typography color="secondary" className={classes.aboutH} variant="h2">
-                Inspiration for Collection
+                Inspiration for our Collection
               </Typography>
+              <Typography className={classes.aboutText} >Our Token and NFT project are inspired by Tweets from Elon Musk about his adorable Havanese dog Marvin.</Typography>
               <div className={classes.tweetCont}>
                 <div className={classes.tweetItem}>
                   <a
@@ -124,6 +130,43 @@ export const MintNFTPage = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={3}></Grid>
         </Grid>
+        <div style={{marginTop: "24px"}}>
+          <IconButton
+            onClick={() =>
+              window.open("https://t.me/MarvinTokenOfficial", "_blank")
+            }
+            className={classes.social}
+          >
+            <TelegramIcon className={classes.icon} />
+          </IconButton>
+          <IconButton
+            onClick={() =>
+              window.open("https://twitter.com/MarvinToken", "_blank")
+            }
+            className={classes.social}
+          >
+            <TwitterIcon className={classes.icon} />
+          </IconButton>
+          <IconButton
+            onClick={() =>
+              window.open(
+                "https://www.facebook.com/Elons-Marvin-100592502419662",
+                "_blank"
+              )
+            }
+            className={classes.social}
+          >
+            <FacebookIcon className={classes.icon} />
+          </IconButton>
+          <IconButton
+            onClick={() =>
+              window.open("https://reddit.com/r/MarvinToken", "_blank")
+            }
+            className={classes.social}
+          >
+            <RedditIcon className={classes.icon} />
+          </IconButton>
+        </div>
       </Box>
     </div>
   );
@@ -150,6 +193,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 10,
     [theme.breakpoints.down(900)]: {
       flexDirection: "column",
+    },
+  },
+  social: {
+    marginRight: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+  },
+  icon: {
+    height: 50,
+    width: 50,
+    "&:hover": {
+      color: theme.palette.secondary.light,
     },
   },
   newsItem: {

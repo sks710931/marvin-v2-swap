@@ -23,7 +23,7 @@ export const WhitelistMintPage = () => {
         alignItems="center"
       >
         <Typography variant="h4">
-          Follow our social channels to win the whitelist spots.
+          Follow our social channels for a chance to win a whitelist spot.
         </Typography>
         <div>
           <IconButton
@@ -61,12 +61,6 @@ export const WhitelistMintPage = () => {
           >
             <RedditIcon className={classes.icon} />
           </IconButton>
-          <IconButton
-            onClick={() => window.open("https://t.me/MarvinTokenAnn", "_blank")}
-            className={classes.social}
-          >
-            <TelegramIcon className={classes.icon} />
-          </IconButton>
         </div>
       </Box>
 
@@ -86,7 +80,7 @@ export const WhitelistMintPage = () => {
                 playing={true}
                 width="100%"
                 height="100%"
-                url="https://firebasestorage.googleapis.com/v0/b/elons-marvin.appspot.com/o/second.mp4?alt=media&token=a4b76131-5a4e-41dd-95fa-f57ca1b5748d"
+                url="https://elonsmarvin.com/second.mp4"
               />
             </div>
             <PresaleMinter />
