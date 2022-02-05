@@ -7,7 +7,7 @@ import yahoo from "../assets/images/yahoo.png";
 import mw from "../assets/images/marketwatch.jpg";
 import tw1 from "../assets/images/tweet1.PNG";
 import tw2 from "../assets/images/tweet2.png";
-
+import key from "../assets/images/nftkey.png";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -166,6 +166,14 @@ export const MintNFTPage = () => {
           >
             <RedditIcon className={classes.icon} />
           </IconButton>
+          <IconButton
+            onClick={() =>
+              window.open("https://nftkey.app/collections/thebossymartian/", "_blank")
+            }
+            className={classes.social}
+          >
+            <img className={classes.imgIcon} src={key} alt="NFT Key Collection" />
+          </IconButton>
         </div>
       </Box>
     </div>
@@ -204,6 +212,22 @@ const useStyles = makeStyles((theme) => ({
     width: 50,
     "&:hover": {
       color: theme.palette.secondary.light,
+    },
+    [theme.breakpoints.down(900)]: {
+      height: 30,
+      width: 30,
+    },
+  },
+  imgIcon:{
+    height: 50,
+    width: 50,
+    borderRadius:"50%",
+    "&:hover": {
+      color: theme.palette.secondary.light,
+    },
+    [theme.breakpoints.down(900)]: {
+      height: 30,
+      width: 30,
     },
   },
   newsItem: {
